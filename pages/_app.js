@@ -1,7 +1,15 @@
-import '../styles/globals.css'
+import { ChakraProvider } from '@chakra-ui/react'
+import { UserContextProvider } from '../lib/UserContext'
+import { supabase } from '../util/supabase'
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function RootApp({ Component, pageProps }) {
+  return (
+    <ChakraProvider>
+      <UserContextProvider supabaseClient={supabase}>
+        <Component {...pageProps} />
+      </UserContextProvider>
+    </ChakraProvider>
+  )
 }
 
-export default MyApp
+export default RootApp
