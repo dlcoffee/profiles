@@ -2,7 +2,6 @@ import NextLink from 'next/link'
 import {
   Avatar,
   Box,
-  Button,
   Center,
   Heading,
   Link,

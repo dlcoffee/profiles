@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import { Stack, Box, Container, Heading, Text, Link } from '@chakra-ui/react'
+import { Flex, Stack, Box, Container, Text, Link } from '@chakra-ui/react'
 
 import { useUser } from '../lib/UserContext'
 import { supabase } from '../util/supabase'
@@ -29,15 +29,21 @@ const Layout = ({ children }) => {
       </Head>
 
       <Container maxW={'3xl'}>
-        <Stack as={Box} textAlign="center" py={{ base: 12 }}>
-          <Heading
-            fontWeight={600}
-            fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-          >
-            Profiles App
-          </Heading>
+        <Flex
+          as="nav"
+          w="100%"
+          justify="space-between"
+          alignItems="center"
+          mb={8}
+          py={4}
+        >
+          <Box>
+            <Text fontSize="lg" fontWeight="bold">
+              Profiles App
+            </Text>
+          </Box>
 
-          <Stack direction={'row'} spacing={2}>
+          <Stack spacing={4} align="center" direction="row">
             <Box>
               <NextLink href="/" passHref>
                 <Link>Home</Link>
@@ -78,7 +84,7 @@ const Layout = ({ children }) => {
               </>
             )}
           </Stack>
-        </Stack>
+        </Flex>
 
         <Box>{children}</Box>
       </Container>

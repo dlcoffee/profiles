@@ -20,6 +20,7 @@ export default function EditProfile({ user, profile }) {
     name: profile.name,
     username: profile.username,
     bio: profile.bio,
+    website: profile.website,
   })
 
   const handleInputChange = (e) => {
@@ -39,7 +40,7 @@ export default function EditProfile({ user, profile }) {
       id: user.id,
       username: form.username,
       name: form.name,
-      // website,
+      website: form.website,
       // avatar_url,
       bio: form.bio,
       updated_at: new Date(),
@@ -83,9 +84,20 @@ export default function EditProfile({ user, profile }) {
               <Input
                 value={form.username}
                 onChange={handleInputChange}
-                type="username"
+                type="text"
                 name="username"
                 id="username"
+              />
+            </FormControl>
+
+            <FormControl id="website">
+              <FormLabel>website</FormLabel>
+              <Input
+                value={form.website}
+                onChange={handleInputChange}
+                type="text"
+                name="website"
+                id="website"
               />
             </FormControl>
 
