@@ -12,7 +12,7 @@ import { supabase } from '../util/supabase'
 
 import Layout from '../components/Layout'
 
-export default function Profile({ user }) {
+export default function Settings({ user }) {
   const [password, setPassword] = useState('')
 
   const handlePassword = (e) => {
@@ -27,7 +27,7 @@ export default function Profile({ user }) {
   return (
     <Layout>
       <div>
-        <Heading size="lg">User Data</Heading>
+        <Heading size="lg">User Settings</Heading>
 
         <Code colorScheme="green">
           <pre>{JSON.stringify(user, null, 2)}</pre>
@@ -57,7 +57,7 @@ export default function Profile({ user }) {
 export async function getServerSideProps({ req }) {
   const { user } = await supabase.auth.api.getUserByCookie(req)
 
-  console.log('[profile] fetched user:', user)
+  console.log('[settings] fetched user:', user)
 
   if (!user) {
     return { props: {}, redirect: { destination: '/login', permanent: false } }

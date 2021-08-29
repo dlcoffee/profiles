@@ -1,17 +1,7 @@
 import Head from 'next/head'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import {
-  Stack,
-  Box,
-  Center,
-  Container,
-  Button,
-  Flex,
-  Heading,
-  Text,
-  Link,
-} from '@chakra-ui/react'
+import { Stack, Box, Container, Heading, Text, Link } from '@chakra-ui/react'
 
 import { useUser } from '../lib/UserContext'
 import { supabase } from '../util/supabase'
@@ -73,6 +63,12 @@ const Layout = ({ children }) => {
                 <Box>
                   <NextLink href="/profile" passHref>
                     <Link>Profile</Link>
+                  </NextLink>
+                </Box>
+
+                <Box>
+                  <NextLink href="/settings" passHref>
+                    <Link>Settings</Link>
                   </NextLink>
                 </Box>
 
