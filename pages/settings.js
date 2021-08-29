@@ -10,8 +10,6 @@ import {
 
 import { supabase } from '../util/supabase'
 
-import Layout from '../components/Layout'
-
 export default function Settings({ user }) {
   const [password, setPassword] = useState('')
 
@@ -25,32 +23,30 @@ export default function Settings({ user }) {
   }
 
   return (
-    <Layout>
-      <div>
-        <Heading size="lg">User Settings</Heading>
+    <div>
+      <Heading size="lg">User Settings</Heading>
 
-        <Code colorScheme="green">
-          <pre>{JSON.stringify(user, null, 2)}</pre>
-        </Code>
+      <Code colorScheme="green">
+        <pre>{JSON.stringify(user, null, 2)}</pre>
+      </Code>
 
-        <form onSubmit={handleSubmit}>
-          <FormControl id="password">
-            <FormLabel>new password</FormLabel>
-            <Input
-              value={password}
-              onChange={handlePassword}
-              type="password"
-              name="password"
-              id="password"
-            />
-          </FormControl>
+      <form onSubmit={handleSubmit}>
+        <FormControl id="password">
+          <FormLabel>new password</FormLabel>
+          <Input
+            value={password}
+            onChange={handlePassword}
+            type="password"
+            name="password"
+            id="password"
+          />
+        </FormControl>
 
-          <Button colorScheme="teal" type="submit">
-            update password
-          </Button>
-        </form>
-      </div>
-    </Layout>
+        <Button colorScheme="teal" type="submit">
+          update password
+        </Button>
+      </form>
+    </div>
   )
 }
 

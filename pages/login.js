@@ -8,8 +8,6 @@ import {
   Input,
 } from '@chakra-ui/react'
 
-import Layout from '../components/Layout'
-
 import { supabase } from '../util/supabase'
 
 export default function Login() {
@@ -39,7 +37,7 @@ export default function Login() {
   }
 
   return (
-    <Layout>
+    <div>
       <Heading size="lg">Log In</Heading>
 
       <form onSubmit={handleSubmit}>
@@ -69,7 +67,7 @@ export default function Login() {
           Submit
         </Button>
       </form>
-    </Layout>
+    </div>
   )
 }
 

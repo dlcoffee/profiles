@@ -9,8 +9,6 @@ import {
 
 import { supabase } from '../util/supabase'
 
-import Layout from '../components/Layout'
-
 export default function Signup({ user }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -34,7 +32,7 @@ export default function Signup({ user }) {
   }
 
   return (
-    <Layout>
+    <div>
       <Heading size="lg">Sign Up</Heading>
 
       <form onSubmit={handleSubmit}>
@@ -64,6 +62,6 @@ export default function Signup({ user }) {
           Submit
         </Button>
       </form>
-    </Layout>
+    </div>
   )
 }
