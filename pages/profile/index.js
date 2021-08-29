@@ -1,6 +1,7 @@
 import NextLink from 'next/link'
 import {
   Avatar,
+  AvatarBadge,
   Box,
   Center,
   Heading,
@@ -34,24 +35,13 @@ export default function Profile({ profile }) {
         >
           <Avatar
             size="xl"
-            src={
-              'https://images.unsplash.com/photo-1520810627419-35e362c5dc07?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ'
-            }
+            name={profile.name}
+            src="https://bit.ly/broken-link"
             alt="Avatar Alt"
             mb={4}
-            pos="relative"
-            _after={{
-              content: '""',
-              w: 4,
-              h: 4,
-              bg: 'green.300',
-              border: '2px solid white',
-              rounded: 'full',
-              pos: 'absolute',
-              bottom: 0,
-              right: 3,
-            }}
-          />
+          >
+            <AvatarBadge boxSize=".75em" bg="green.500" />
+          </Avatar>
           <Heading fontSize="2xl" fontFamily="body">
             {profile.name}
           </Heading>
