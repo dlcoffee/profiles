@@ -70,6 +70,10 @@ export async function getServerSideProps({ req }) {
     return { props: {}, redirect: { destination: '/login', permanent: false } }
   }
 
+  // apparently you can't just get the session this way: https://github.com/supabase/supabase/issues/347#issuecomment-897892454
+  // const session = await supabase.auth.session()
+  // console.log('[profile] session:', session)
+
   let { data, error, status } = await supabase
     .from('profiles')
     .select(`name, username, bio, website, avatar_url`)
