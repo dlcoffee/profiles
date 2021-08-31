@@ -50,6 +50,12 @@ const Layout = ({ children }) => {
               </NextLink>
             </Box>
 
+            <Box>
+              <NextLink href="/rq" passHref>
+                <Link>Home (react-query)</Link>
+              </NextLink>
+            </Box>
+
             {!session ? (
               <>
                 <Box>

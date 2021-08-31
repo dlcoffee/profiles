@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useQuery } from 'react-query'
 import {
   Flex,
   Heading,
@@ -16,52 +17,53 @@ import {
 import { supabase } from '../util/supabase'
 
 export default function Home() {
-  const [profiles, setProfiles] = useState([])
+  // const [profiles, setProfiles] = useState([])
   const [updatedProfile, handleUpdatedProfile] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
 
-  useEffect(() => {
-    const fetchProfiles = async () => {
-      setIsLoading(true)
+  const {
+    isLoading,
+    error,
+    data: profiles,
+  } = useQuery('profiles', async () => {
+    const { data, error } = await supabase.from('profiles').select()
 
-      const { data, error } = await supabase.from('profiles').select()
-
-      setIsLoading(false)
-      setProfiles(data)
+    if (error) {
+      // fetcher function needs to throw an error if there is one
+      throw new Error(error)
     }
 
-    fetchProfiles()
-  }, [])
+    return data
+  })
 
-  // set up supabase subscription for updates
-  useEffect(() => {
-    const profileListener = supabase
-      .from('profiles')
-      .on('UPDATE', (payload) => handleUpdatedProfile(payload.new))
-      .subscribe()
+  // // set up supabase subscription for updates
+  // useEffect(() => {
+  //   const profileListener = supabase
+  //     .from('profiles')
+  //     .on('UPDATE', (payload) => handleUpdatedProfile(payload.new))
+  //     .subscribe()
 
-    return () => {
-      profileListener.unsubscribe()
-    }
-  }, [])
+  //   return () => {
+  //     profileListener.unsubscribe()
+  //   }
+  // }, [])
 
-  // handles an update to a profile
-  useEffect(() => {
-    console.log('updated profile event', updatedProfile)
+  // // handles an update to a profile
+  // useEffect(() => {
+  //   console.log('updated profile event', updatedProfile)
 
-    if (updatedProfile) {
-      const updatedProfiles = profiles.map((profile) => {
-        if (profile.id === updatedProfile.id) {
-          return updatedProfile
-        }
+  //   if (updatedProfile) {
+  //     const updatedProfiles = profiles.map((profile) => {
+  //       if (profile.id === updatedProfile.id) {
+  //         return updatedProfile
+  //       }
 
-        return profile
-      })
+  //       return profile
+  //     })
 
-      setProfiles(updatedProfiles)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [updatedProfile])
+  //     setProfiles(updatedProfiles)
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [updatedProfile])
 
   return (
     <div>
@@ -72,8 +74,7 @@ export default function Home() {
 
         <Text>
           This page is statically generated and uses useEffects to fetch data.
-          It also uses supabase subscriptions to handle updates for real time
-          data changes.
+          It also uses react-query to handle data caching and querying.
         </Text>
 
         {isLoading ? (
