@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
+import { useEffect } from 'react'
+import { useQuery, useQueryClient } from 'react-query'
 import {
   Flex,
   Heading,
@@ -17,8 +17,7 @@ import {
 import { supabase } from '../util/supabase'
 
 export default function Home() {
-  // const [profiles, setProfiles] = useState([])
-  const [updatedProfile, handleUpdatedProfile] = useState(null)
+  const queryClient = useQueryClient()
 
   const {
     isLoading,
@@ -35,35 +34,17 @@ export default function Home() {
     return data
   })
 
-  // // set up supabase subscription for updates
+  // set up supabase subscription for updates
   // useEffect(() => {
   //   const profileListener = supabase
   //     .from('profiles')
-  //     .on('UPDATE', (payload) => handleUpdatedProfile(payload.new))
+  //     .on('UPDATE', (payload) => queryClient.invalidateQueries('profiles'))
   //     .subscribe()
 
   //   return () => {
   //     profileListener.unsubscribe()
   //   }
-  // }, [])
-
-  // // handles an update to a profile
-  // useEffect(() => {
-  //   console.log('updated profile event', updatedProfile)
-
-  //   if (updatedProfile) {
-  //     const updatedProfiles = profiles.map((profile) => {
-  //       if (profile.id === updatedProfile.id) {
-  //         return updatedProfile
-  //       }
-
-  //       return profile
-  //     })
-
-  //     setProfiles(updatedProfiles)
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [updatedProfile])
+  // }, [queryClient])
 
   return (
     <div>
