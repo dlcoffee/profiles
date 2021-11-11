@@ -3,8 +3,8 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { Flex, Stack, Box, Container, Text, Link } from '@chakra-ui/react'
 
-import { useUser } from '../lib/UserContext'
-import { supabase } from '../util/supabase'
+import { useUser } from '../contexts/UserContext'
+import { supabase } from '../../lib/supabase'
 
 const Layout = ({ children }) => {
   const router = useRouter()

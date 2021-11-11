@@ -1,8 +1,8 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import Layout from '../components/Layout'
-import { UserContextProvider } from '../lib/UserContext'
-import { supabase } from '../util/supabase'
+import Layout from '../web/components/Layout'
+import { UserContextProvider } from '../web/contexts/UserContext'
+import { supabase } from '../lib/supabase'
 
 const queryClient = new QueryClient()
 

@@ -7,7 +7,7 @@ import {
   Input,
 } from '@chakra-ui/react'
 
-import { supabase } from '../util/supabase'
+import { supabase } from '../lib/supabase'
 
 export default function Signup({ user }) {
   const [email, setEmail] = useState('')

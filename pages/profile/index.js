@@ -10,7 +10,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 
-import { supabase } from '../../util/supabase'
+import { supabase } from '../../lib/supabase'
 
 export default function Profile({ profile }) {
   return (
